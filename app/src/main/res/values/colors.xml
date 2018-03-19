@@ -6,7 +6,7 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="black">#bd000000</color>
-    <color name="white_light">#beffffff</color>
+    <color name="white_light">#e2e2e2</color>
     <color name="blue_light">#be7098ff</color>
 
     <color name="white">#ffffffff</color>

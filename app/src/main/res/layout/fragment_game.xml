@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/fragment_game_quest_text_view"
@@ -13,6 +13,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/game_text_background"
         android:fontFamily="sans-serif-light"
         android:paddingBottom="8dp"
@@ -22,18 +23,20 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/fragment_game_buttons_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_game_picture_image_view" />
 
     <ImageView
         android:id="@+id/fragment_game_picture_image_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        android:scaleType="centerCrop"
+        android:scaleType="center"
         app:layout_constraintBottom_toTopOf="@+id/fragment_game_quest_text_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:srcCompat="@mipmap/ic_hypercube" />
 
     <LinearLayout
         android:id="@+id/fragment_game_buttons_layout"
@@ -43,6 +46,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/game_answer_background"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

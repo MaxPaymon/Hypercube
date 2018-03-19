@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,7 @@ public class FragmentGame extends Fragment {
     private ImageView picture;
 
     private ButtonAnswer buttonAnswerOne;
-    private ConstraintLayout buttonsLayout;
+    private LinearLayout buttonsLayout;
 
     private ArrayList<ElementsOfLevel> elementsOfLevelArrayList = new ArrayList<>();
 
@@ -55,6 +57,9 @@ public class FragmentGame extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Для тестов
+        Player.progress = 0;
 
         System.out.println(Player.progress);
         setLevel(getLevelById(Player.progress));
@@ -85,7 +90,6 @@ public class FragmentGame extends Fragment {
 
         buttonAnswerOne = new ButtonAnswer(getActivity(), new Answer(1, "Ок").getId());
 
-
         nextButton = new Button(getActivity());
         nextButton.setText("Далее");
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -103,13 +107,23 @@ public class FragmentGame extends Fragment {
 
     public void setInfoToView(int questProgressId){
         buttonsLayout.removeAllViews();
+        picture.setImageResource(0);
 
         Object elementOfLevel = elementsOfLevelArrayList.get(questProgressId);
 
         if (elementOfLevel instanceof Dialog) {
             dialogText.setText(((Dialog) elementOfLevel).getText());
             picture.setImageResource(((Dialog) elementOfLevel).getPicture());
-            buttonsLayout.addView(nextButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.gravity = Gravity.CENTER;
+
+            if (((Dialog) elementOfLevel).getButtonText() != null) {
+                nextButton.setText(((Dialog) elementOfLevel).getButtonText().trim());
+            } else {
+                nextButton.setText("Далее");
+            }
+
+            buttonsLayout.addView(nextButton, params);
 
         } else if (elementOfLevel instanceof Quest) {
 //            elementOfLevel.
