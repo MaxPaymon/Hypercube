@@ -43,7 +43,7 @@ public class Levels {
         answer1l1q.add(new Answer(0, "14"));
         answer1l1q.add(new Answer(0, "3"));
 
-        final Quest quest1 = new Quest("Сколько видов ресурсов существует?", "4", "Увы, но ты ответил не правильно. Не расстраивайся, главное будь внимателен в соедующий раз!", "Отлично! Ты схватываешь на лету. Продолжай в том же духе!", answer1l1q, new Reward(1, 1,1,1), R.drawable.sprite_cube, R.drawable.sprite_cube, R.drawable.sprite_cube);
+        final Quest quest1 = new Quest("Сколько видов ресурсов существует?", "4", "Увы, но ты ответил не правильно. Не расстраивайся, главное будь внимателен в следующий раз!", "Отлично! Ты схватываешь на лету. Продолжай в том же духе!", answer1l1q, new Reward(1, 1,1,1), R.drawable.sprite_cube, R.drawable.sprite_cube, R.drawable.sprite_cube);
 
         final ArrayList<ElementsOfLevel> elementsOfGames = new ArrayList<>();
 
@@ -66,7 +66,16 @@ public class Levels {
     }
 
     public static Level createLevelTwo() {
-        final Dialog dialog1 = new Dialog("Ура, ты перешел на второй уровень!", "Отлично", R.mipmap.ic_hypercube);
+        final Dialog dialog1 = new Dialog("Поздравляю, ты перешел на второй уровень!", "Отлично", R.mipmap.ic_hypercube);
+        final Dialog dialog2 = new Dialog("Смотри! Теперь у тебя есть некоторое количество всех ресурсов!", "Ага", R.mipmap.ic_hypercube);
+        final Dialog dialog3 = new Dialog("Они помогут тебе пройти дальше.", null, R.mipmap.ic_hypercube);
+        final Dialog dialog4 = new Dialog("Будь внимателен! От этих ресурсов записит все!.", null, R.mipmap.ic_hypercube);
+        final Dialog dialog5 = new Dialog("Хорошо. Тогда продолжим. Я рсскажу тебе историю моей вселенной.", "Давай", R.mipmap.ic_hypercube);
+        final Dialog dialog6 = new Dialog("В далеком 200180 столетии, всюду царил хаос и разруха.", null, R.mipmap.ic_hypercube);
+        final Dialog dialog7 = new Dialog("Но спустя 5 столейтий, появился он, герой и наш спаситель - Сompass.", null, R.mipmap.ic_hypercube);
+        final Dialog dialog8 = new Dialog("Они помогут тебе пройти дальше.", null, R.mipmap.ic_hypercube);
+        final Dialog dialog9 = new Dialog("Они помогут тебе пройти дальше.", null, R.mipmap.ic_hypercube);
+        final Dialog dialog10 = new Dialog("Они помогут тебе пройти дальше.", null, R.mipmap.ic_hypercube);
         final ArrayList<ElementsOfLevel> elementsOfGames = new ArrayList<>();
 
         elementsOfGames.add(dialog1);
