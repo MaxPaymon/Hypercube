@@ -8,27 +8,72 @@ import java.util.ArrayList;
 
 public class Quest extends ElementsOfLevel {
 
-    int id;
     String question;
-    ArrayList<Answer> answer;
-    ArrayList<Reward> reward;
+    String trueAnswer;
 
-    public Quest(int id, String question, ArrayList<Answer> answer, ArrayList<Reward> reward) {
+    String loserDialog;
+    String winsDialog;
+
+    int loserPicture;
+    int winsPicture;
+
+    ArrayList<Answer> answer;
+    Reward reward;
+    int picture;
+
+    public Quest(String question, String trueAnswer, String loserDialog, String winsDialog, ArrayList<Answer> answer, Reward reward, int picture, int loserPicture, int winsPicture) {
         this.question = question;
         this.answer = answer;
         this.reward = reward;
-        this.id = id;
+        this.trueAnswer = trueAnswer;
+        this.picture = picture;
+        this.loserDialog = loserDialog;
+        this.winsDialog = winsDialog;
+        this.loserPicture = loserPicture;
+        this.winsPicture = winsPicture;
+    }
+
+    public Quest() {
+
+    }
+
+    public String getTrueAnswer() {
+        return trueAnswer;
+    }
+
+    public int getPicture() {
+        return picture;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public ArrayList<Answer> getAnswer() {
+        return answer;
+    }
+
+    public Reward getReward() {
+        return reward;
     }
 
     public Answer getAnswerById(int id) {
         return answer.get(id);
     }
 
-    public int getId() {
-        return id;
+    public int getLoserPicture() {
+        return loserPicture;
     }
 
-    public Reward getRewardFromQuest(int answerId) {
-        return reward.get(answerId);
+    public int getWinsPicture() {
+        return winsPicture;
+    }
+
+    public String getLoserDialog() {
+        return loserDialog;
+    }
+
+    public String getWinsDialog() {
+        return winsDialog;
     }
 }

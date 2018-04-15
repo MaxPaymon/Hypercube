@@ -1,5 +1,7 @@
 package duff.ru.hypercube.Utils;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +23,11 @@ public class Utils {
             fragmentTransaction.addToBackStack(tag);
         }
         fragmentTransaction.commit();
+    }
+
+    public static void playButtonAnswerSound(Context context) {
+        MediaPlayer mp = MediaPlayer.create(context, R.raw.button_answer);
+        mp.start();
     }
 
 }

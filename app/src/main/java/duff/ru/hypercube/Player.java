@@ -48,6 +48,11 @@ public class Player {
         editor.apply();
     }
 
+    public static void saveAllSettings() {
+        saveSettings();
+        saveStat();
+    }
+
     public static void setDefaultSettings() {
         name = "";
         progress = -1;

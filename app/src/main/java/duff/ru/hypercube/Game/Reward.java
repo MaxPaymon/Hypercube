@@ -18,4 +18,19 @@ public class Reward {
         this.fortune = fortune;
     }
 
+    public int getPixels() {
+        return pixels;
+    }
+
+    public int getDiaphragms() {
+        return diaphragms;
+    }
+
+    public int getFortune() {
+        return fortune;
+    }
+
+    public int getHexes() {
+        return hexes;
+    }
 }

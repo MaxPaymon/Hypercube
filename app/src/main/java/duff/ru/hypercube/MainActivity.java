@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPref = getPreferences(Context.MODE_PRIVATE);
 
-
         Player.loadSettings();
 
         if (Player.progress != -1) {
@@ -35,5 +34,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        Player.saveAllSettings();
+
     }
 }

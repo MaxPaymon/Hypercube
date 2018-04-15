@@ -1,11 +1,12 @@
 package duff.ru.hypercube.View;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
+import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +26,14 @@ import duff.ru.hypercube.Game.Level;
 import duff.ru.hypercube.Game.Levels;
 import duff.ru.hypercube.Game.Quest;
 import duff.ru.hypercube.GameComponents.ButtonAnswer;
+import duff.ru.hypercube.GameComponents.ButtonNext;
 import duff.ru.hypercube.Player;
 import duff.ru.hypercube.R;
+import duff.ru.hypercube.Utils.Utils;
+
+import static android.content.ContentValues.TAG;
+import static duff.ru.hypercube.Config.*;
+
 
 /**
  * Created by maks on 15.03.18.
@@ -34,36 +41,54 @@ import duff.ru.hypercube.R;
 
 public class FragmentGame extends Fragment {
 
-    private TextView pixels;
-    private TextView diaphragms;
-    private TextView hexes;
-    private TextView fortune;
+    private static FragmentActivity activity;
 
-    private TextView dialogText;
+    private static MediaPlayer mediaPlayer;
+    
+    private static TextView pixels;
+    private static TextView diaphragms;
+    private static TextView hexes;
+    private static TextView fortune;
 
-    private ImageView picture;
+    private static TextView levelGame;
 
-    private ButtonAnswer buttonAnswerOne;
-    private LinearLayout buttonsLayout;
+    private static Button goToMenu;
 
-    private ArrayList<ElementsOfLevel> elementsOfLevelArrayList = new ArrayList<>();
+    private static TextView dialogText;
 
-    public int levelProgressId = 0;
+    private static ImageView picture;
 
-    private View view;
+    private static LinearLayout buttonsLayout;
 
-    private Button nextButton;
+    private static ArrayList<ElementsOfLevel> elementsOfLevelArrayList = new ArrayList<>();
+
+    public static int levelProgressId = 0;
+
+    private static View view;
+
+    private static ButtonNext nextButton;
+    
+    public static String trueAnswer;
+
+    public static Quest questNow;
+
+    private static Object elementOfLevel;
+
+    private static  LinearLayout.LayoutParams paramsDialog;
+    private static  LinearLayout.LayoutParams paramsQuest;
+
+    static int oldPicture;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Для тестов
-        Player.progress = 0;
+        this.activity = getActivity();
+        questNow = new Quest();
 
-        System.out.println(Player.progress);
-        setLevel(getLevelById(Player.progress));
+        mediaPlayer = MediaPlayer.create(activity, R.raw.button_answer);
 
+        restartProgressLevel();
     }
 
     @Nullable
@@ -77,10 +102,21 @@ public class FragmentGame extends Fragment {
         hexes = view.findViewById(R.id.fragment_game_hexes_text_view);
         fortune = view.findViewById(R.id.fragment_game_fortune_text_view);
 
+        levelGame = view.findViewById(R.id.fragment_game_level_text_view);
+        levelGame.setText(String.format("Уровень %s", Player.progress+1));
+
         buttonsLayout = view.findViewById(R.id.fragment_game_buttons_layout);
 
+        paramsDialog = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        paramsDialog.gravity = Gravity.CENTER;
+
+        paramsQuest = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        paramsQuest.setMargins(8, 0, 8, 0);
+        paramsQuest.weight = (float) 0.25;
+        paramsQuest.gravity = Gravity.CENTER;
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         buttonsLayout.getLayoutParams().height = displayMetrics.heightPixels / 6;
 
@@ -88,58 +124,114 @@ public class FragmentGame extends Fragment {
 
         picture = view.findViewById(R.id.fragment_game_picture_image_view);
 
-        buttonAnswerOne = new ButtonAnswer(getActivity(), new Answer(1, "Ок").getId());
+        goToMenu = view.findViewById(R.id.fragment_game_menu_button);
 
-        nextButton = new Button(getActivity());
-        nextButton.setText("Далее");
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        nextButton = new ButtonNext(activity);
+
+        goToMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextElementOfLevel();
+                Bundle bundle = new Bundle();
+                bundle.putInt(OPEN_MENU_FROM_GAME, 1);
+
+                FragmentMainMenu fragmentMainMenu = new FragmentMainMenu();
+                fragmentMainMenu.setArguments(bundle);
+
+                Utils.replaceFragmentWithAnimationFade(activity.getSupportFragmentManager(), fragmentMainMenu, null, true);
             }
         });
 
-        setStats();
-        setInfoToView(levelProgressId);
+        updateStats();
+        setLevel(getLevelById(Player.progress));
 
         return view;
     }
 
-    public void setInfoToView(int questProgressId){
+    public static void setInfoToView(int questProgressId){
         buttonsLayout.removeAllViews();
-        picture.setImageResource(0);
 
-        Object elementOfLevel = elementsOfLevelArrayList.get(questProgressId);
+        elementOfLevel = elementsOfLevelArrayList.get(questProgressId);
 
         if (elementOfLevel instanceof Dialog) {
             dialogText.setText(((Dialog) elementOfLevel).getText());
-            picture.setImageResource(((Dialog) elementOfLevel).getPicture());
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.gravity = Gravity.CENTER;
 
+            if (((Dialog) elementOfLevel).getPicture() != oldPicture) {
+                picture.setImageResource(0);
+                picture.setImageResource(((Dialog) elementOfLevel).getPicture());
+                oldPicture = ((Dialog) elementOfLevel).getPicture();
+                System.out.println("set new Picture");
+            } else {
+                System.out.println("Picture is old");
+            }
+            
             if (((Dialog) elementOfLevel).getButtonText() != null) {
                 nextButton.setText(((Dialog) elementOfLevel).getButtonText().trim());
-            } else {
-                nextButton.setText("Далее");
             }
 
-            buttonsLayout.addView(nextButton, params);
+            buttonsLayout.addView(nextButton, paramsDialog);
 
         } else if (elementOfLevel instanceof Quest) {
-//            elementOfLevel.
+            questNow = (Quest) elementOfLevel;
+            dialogText.setText(((Quest) elementOfLevel).getQuestion());
+            picture.setImageResource(((Quest) elementOfLevel).getPicture());
+            trueAnswer = ((Quest) elementOfLevel).getTrueAnswer();
+
+            for (int i = 0;i < ((Quest) elementOfLevel).getAnswer().size(); i++)
+                buttonsLayout.addView(new ButtonAnswer(activity, ((Quest) elementOfLevel).getAnswer().get(i), i), paramsQuest);
         }
 
     }
 
-    public void nextLevel(){
+    public static void checkAnswer(Answer answer) {
+        if (answer.getText().equals(trueAnswer)) {
+            setInfoAfterAnswer(questNow,true);
+            getRewardOfQuest(questNow);
+        } else if (!answer.getText().equals(trueAnswer)){
+            setInfoAfterAnswer(questNow,false);
+        }
+    }
+
+    public static void setInfoAfterAnswer(Quest quest, boolean answer) {
+
+        buttonsLayout.removeAllViews();
+        picture.setImageResource(0);
+
+        System.out.println(quest.getWinsDialog() + " " + quest.getWinsPicture());
+
+        if (answer) {
+            dialogText.setText(quest.getWinsDialog());
+            picture.setImageResource(quest.getWinsPicture());
+        } else {
+            dialogText.setText(quest.getLoserDialog());
+            picture.setImageResource(quest.getLoserPicture());
+        }
+
+        nextButton.setText("Далее");
+        buttonsLayout.addView(nextButton, paramsDialog);
+    }
+
+    public static void getRewardOfQuest(Quest quest) {
+
+        Player.pixels += quest.getReward().getPixels();
+        Player.diaphragms += quest.getReward().getPixels();
+        Player.hexes += quest.getReward().getPixels();
+        Player.fortune += quest.getReward().getPixels();
+
+        Player.saveStat();
+        updateStats();
+    }
+
+
+    public static void nextLevel(){
         if (Player.progress != Levels.levelsArrayList.size()) {
             setLevel(getLevelById(Player.progress));
         } else {
-            Toast.makeText(getActivity(), "Поздравляем! Вы прошли игру!", Toast.LENGTH_SHORT).show();
+            Player.progress--;
+            Toast.makeText(activity, "Поздравляем! Вы прошли игру!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void nextElementOfLevel(){
+    public static void nextElementOfLevel(){
         if (levelProgressId != elementsOfLevelArrayList.size()-1) {
             levelProgressId++;
             setInfoToView(levelProgressId);
@@ -151,23 +243,43 @@ public class FragmentGame extends Fragment {
         }
     }
 
-    public void setLevel(Level level) {
+    public static void setLevel(Level level) {
 
         elementsOfLevelArrayList = level.getElementsOfGames();
         if (view != null) {
             setInfoToView(levelProgressId);
+            levelGame.setText(String.format("Уровень %s", Player.progress+1));
         }
 
     }
 
-    public void setStats() {
+    public static void updateStats() {
         pixels.setText(String.valueOf(Player.pixels));
         diaphragms.setText(String.valueOf(Player.diaphragms));
         hexes.setText(String.valueOf(Player.hexes));
         fortune.setText(String.valueOf(Player.fortune));
     }
 
-    public Level getLevelById(int levelId) {
+    public static Level getLevelById(int levelId) {
         return Levels.levelsArrayList.get(levelId);
+    }
+
+    public static void playButtonAnswerSound(){
+        mediaPlayer.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        restartProgressLevel();
+
+    }
+
+    public static void restartProgressLevel() {
+        levelProgressId = 0;
+        oldPicture = 0;
+        Log.d(TAG, "restartProgressLevel");
+
     }
 }

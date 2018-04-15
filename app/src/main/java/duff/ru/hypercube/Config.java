@@ -12,4 +12,9 @@ public class Config {
     public static String SHARED_PREFERENCE_DIAPHRAGMS = "shared_preference_diaphragms";
     public static String SHARED_PREFERENCE_HEXES = "shared_preference_hexes";
     public static String SHARED_PREFERENCE_FORTUNE = "shared_preference_fortune";
+
+
+    //Bundle
+    public static String OPEN_MENU_FROM_GAME = "open_menu_from_game";
+
 }

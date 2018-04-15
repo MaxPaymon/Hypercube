@@ -1,5 +1,7 @@
 package duff.ru.hypercube.View;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,12 +33,16 @@ public class FragmentNewGame extends Fragment {
     private FragmentManager fragmentManager;
     private FragmentActivity activity;
 
+    private static MediaPlayer mediaPlayer;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         this.activity = getActivity();
         this.fragmentManager = activity.getSupportFragmentManager();
+        mediaPlayer = MediaPlayer.create(activity, R.raw.button_menu);
 
     }
 
@@ -55,6 +61,7 @@ public class FragmentNewGame extends Fragment {
         startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayer.start();
                 Player.name = name.getText().toString().trim();
                 Player.progress = 0;
                 Player.saveSettings();
