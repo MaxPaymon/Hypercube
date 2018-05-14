@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <TextView
+    <duff.ru.hypercube.GameComponents.TextWriter
         android:id="@+id/fragment_game_quest_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,12 +40,14 @@
     <LinearLayout
         android:id="@+id/fragment_game_buttons_layout"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/game_answer_background"
         android:gravity="center"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -114,7 +116,7 @@
             app:srcCompat="@drawable/ic_fortune" />
 
         <TextView
-            android:id="@+id/fragment_game_diaphragms_text_view"
+            android:id="@+id/fragment_game_pixels_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -126,7 +128,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <TextView
-            android:id="@+id/fragment_game_pixels_text_view"
+            android:id="@+id/fragment_game_diaphragms_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"

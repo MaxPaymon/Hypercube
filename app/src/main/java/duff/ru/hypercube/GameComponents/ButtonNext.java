@@ -1,6 +1,7 @@
 package duff.ru.hypercube.GameComponents;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ import duff.ru.hypercube.View.FragmentGame;
  */
 
 public class ButtonNext extends android.support.v7.widget.AppCompatButton {
-    public ButtonNext(Context context) {
+    public ButtonNext(final FragmentActivity context) {
         super(context);
 
         this.setText("Далее");
@@ -21,7 +22,7 @@ public class ButtonNext extends android.support.v7.widget.AppCompatButton {
             @Override
             public void onClick(View view) {
                 FragmentGame.playButtonAnswerSound();
-                FragmentGame.nextElementOfLevel();
+                FragmentGame.nextElementOfLevel(context);
             }
         });
 
