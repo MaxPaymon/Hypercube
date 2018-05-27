@@ -1,33 +1,18 @@
 package duff.ru.hypercube.Game;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
-import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import duff.ru.hypercube.MainActivity;
 import duff.ru.hypercube.Player;
-import duff.ru.hypercube.R;
 
 
 /**
@@ -38,11 +23,9 @@ public class Levels {
 
 
     public static String TAG = "hypercube";
+    public static ArrayList<Level> levelsArrayList = new ArrayList<>();
     static String DIALOG = "dialog";
     static String QUEST = "quest";
-
-
-    public static ArrayList<Level> levelsArrayList = new ArrayList<>();
 
     public static void loadAllLevels() {
         levelsArrayList.clear();
