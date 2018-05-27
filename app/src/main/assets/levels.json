@@ -1,0 +1,239 @@
+{
+	"Hypercube":"game",
+	"Levels":[
+		{
+			"Level":"levelOne",
+			"id":"1",
+			"ElementsOfLevel":[
+				{
+					"type":"dialog",
+					"id":"1",
+					"text":"Привет %s !",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"2",
+					"text":"Меня зовут Гиперкуб! Я буду сопровождать тебя по этой игре!",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"3",
+					"text":"Давай обговорим некоторые правила! Их совсем не много.",
+					"buttonText":"Давай",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"4",
+					"text":"В моей вселенной есть всего 4 ресурса:",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"5",
+					"text":"Пиксели - валюта вселенной",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_pixel.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"6",
+					"text":"Диафрагма - помогут выживать",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_diaphragm.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"7",
+					"text":"Хексы - боеприпасы",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_hex.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"8",
+					"text":"Фортуна - поможет тебе избежать неприятностей",
+					"buttonText":"Ага, круто",
+					"picture":"http://185.41.162.111/assets/maks/sprite_fortune.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"9",
+					"text":"Так же помимо простых диалогов, тебе придется сталкиваться с заданиями",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"10",
+					"text":"Что бы их выполнить, придется внимательно следить за тем, кто и что говороит",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"11",
+					"text":"За каждое выполненое задание, ты будешь получать награду, в виде ресурсов, о которых я говорил ранее",
+					"buttonText":"Хорошо",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"12",
+					"text":"Ну что? Попробуешь выполнить свое первое задание?",
+					"buttonText":"Вперед!",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"quest",
+					"answer1":"1",
+					"answer2":"4",
+					"answer3":"14",
+					"answer4":"3",
+
+					"question":"Сколько видов ресурсов существует?",
+					"trueAnswer":"4",
+					"loserDialog":"Увы, но ты ответил не правильно. Не расстраивайся, главное будь внимателен в следующий раз!",
+					"winsDialog":"Отлично! Ты схватываешь на лету. Продолжай в том же духе!",
+
+					"pixels":"1",
+					"diaphragms":"1",
+					"hexes":"1",
+					"fortune":"1",
+
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg",
+					"loserPicture":"http://185.41.162.111/assets/maks/sprite_cube.jpg",
+					"winsPicture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				}
+
+			]
+		},
+		{
+			"Level":"levelTwo",
+			"id":"2",
+			"ElementsOfLevel":[
+				{
+					"type":"dialog",
+					"id":"1",
+					"text":"Поздравляю, ты перешел на второй уровень!",
+					"buttonText":"Отлично",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"2",
+					"text":"Смотри! Теперь у тебя есть некоторое количество всех ресурсов!",
+					"buttonText":"Ага",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"3",
+					"text":"Они помогут тебе пройти дальше.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"4",
+					"text":"Будь внимателен! От этих ресурсов зависит все!.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"5",
+					"text":"Хорошо. Тогда продолжим. Я рсскажу тебе историю моей вселенной.",
+					"buttonText":"Давай",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"6",
+					"text":"В далеком 200180 столетии, всюду царил хаос и разруха.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/haos.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"7",
+					"text":"Но спустя 5 столейтий, появился он, герой и наш спаситель - Сompass.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/compass.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"8",
+					"text":"Ему удалось уничтожить прежнего правителя.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/zahvat.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"9",
+					"text":"Но. Не все так просто!",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"10",
+					"text":"Compass - перестал контролировать некоторую часть себя.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/razum.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"11",
+					"text":"Есть вероятность того, что мы вернемся в то темное время.",
+					"buttonText":"null",
+					"picture":"http://185.41.162.111/assets/maks/haos.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"12",
+					"text":"Твоя задача, %s выяснить что происходит с нашим Героем и спасти вселенную!",
+					"buttonText":"Вперед!",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"dialog",
+					"id":"13",
+					"text":"Прежде чем, ты отправишься на поиски истины вот тебе еще один вопрос!",
+					"buttonText":"Вперед!",
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				},
+				{
+					"type":"quest",
+					"answer1":"Комп",
+					"answer2":"Гиперкуб",
+					"answer3":"Циркуль",
+					"answer4":"Комната",
+
+					"question":"Как зовут нашего героя-спасителя в переводе на русский язык?",
+					"trueAnswer":"Циркуль",
+					"loserDialog":"Память и внимательность твоя не самая сильная сторона.",
+					"winsDialog":"Молодец! Держи один Пиксель и одну Фортуну, они обязательно тебе пригодятся!",
+
+					"pixels":"1",
+					"diaphragms":"0",
+					"hexes":"0",
+					"fortune":"1",
+
+					"picture":"http://185.41.162.111/assets/maks/sprite_cube.jpg",
+					"loserPicture":"http://185.41.162.111/assets/maks/sprite_cube.jpg",
+					"winsPicture":"http://185.41.162.111/assets/maks/sprite_cube.jpg"
+				}
+
+			]
+		}
+			
+
+	]
+	
+}

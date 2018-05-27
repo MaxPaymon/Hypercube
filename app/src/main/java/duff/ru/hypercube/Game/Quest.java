@@ -14,14 +14,14 @@ public class Quest extends ElementsOfLevel {
     String loserDialog;
     String winsDialog;
 
-    int loserPicture;
-    int winsPicture;
+    String loserPicture;
+    String winsPicture;
 
     ArrayList<Answer> answer;
     Reward reward;
-    int picture;
+    String picture;
 
-    public Quest(String question, String trueAnswer, String loserDialog, String winsDialog, ArrayList<Answer> answer, Reward reward, int picture, int loserPicture, int winsPicture) {
+    public Quest(String question, String trueAnswer, String loserDialog, String winsDialog, ArrayList<Answer> answer, Reward reward, String picture, String loserPicture, String winsPicture) {
         this.question = question;
         this.answer = answer;
         this.reward = reward;
@@ -41,7 +41,7 @@ public class Quest extends ElementsOfLevel {
         return trueAnswer;
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 
@@ -61,11 +61,11 @@ public class Quest extends ElementsOfLevel {
         return answer.get(id);
     }
 
-    public int getLoserPicture() {
+    public String getLoserPicture() {
         return loserPicture;
     }
 
-    public int getWinsPicture() {
+    public String getWinsPicture() {
         return winsPicture;
     }
 

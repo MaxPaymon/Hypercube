@@ -3,6 +3,7 @@ package duff.ru.hypercube.View;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -82,7 +85,7 @@ public class FragmentGame extends Fragment {
     private static  LinearLayout.LayoutParams paramsDialog;
     private static  LinearLayout.LayoutParams paramsQuest;
 
-    static int oldPicture;
+    static String oldPicture;
 
     public FragmentGame fragmentGame = this;
 
@@ -161,9 +164,10 @@ public class FragmentGame extends Fragment {
         if (elementOfLevel instanceof Dialog) {
             dialogText.animateText(((Dialog) elementOfLevel).getText());
 
-            if (((Dialog) elementOfLevel).getPicture() != oldPicture) {
-                picture.setImageResource(0);
-                picture.setImageResource(((Dialog) elementOfLevel).getPicture());
+            if (!((Dialog) elementOfLevel).getPicture().equals(oldPicture)) {
+//                picture.setImageResource(0);
+                Log.d(TAG, "setInfoToView: " + Uri.parse(((Dialog) elementOfLevel).getPicture()));
+                Picasso.get().load(Uri.parse(((Dialog) elementOfLevel).getPicture())).placeholder(null).into(picture);
                 oldPicture = ((Dialog) elementOfLevel).getPicture();
             }
 
@@ -179,7 +183,8 @@ public class FragmentGame extends Fragment {
             questNow = null;
             questNow = (Quest) elementOfLevel;
             dialogText.animateText(questNow.getQuestion());
-            picture.setImageResource(questNow.getPicture());
+            Picasso.get().load((questNow.getPicture())).placeholder(null).into(picture);
+
             trueAnswer = (questNow).getTrueAnswer();
 
             for (int i = 0;i < ((Quest) elementOfLevel).getAnswer().size(); i++)
@@ -204,10 +209,12 @@ public class FragmentGame extends Fragment {
 
         if (answer) {
             dialogText.animateText(quest.getWinsDialog());
-            picture.setImageResource(quest.getWinsPicture());
+            Picasso.get().load((Uri.parse(quest.getWinsPicture()))).placeholder(null).into(picture);
+
         } else {
             dialogText.animateText(quest.getLoserDialog());
-            picture.setImageResource(quest.getLoserPicture());
+            Picasso.get().load((Uri.parse(quest.getLoserPicture()))).placeholder(null).into(picture);
+
         }
 
         nextButton.setText("Далее");
@@ -309,6 +316,6 @@ public class FragmentGame extends Fragment {
 
     public static void restartProgressLevel() {
         levelProgressId = 0;
-        oldPicture = 0;
+        oldPicture = "";
     }
 }

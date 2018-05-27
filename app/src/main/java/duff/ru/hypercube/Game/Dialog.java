@@ -10,25 +10,17 @@ import java.util.ArrayList;
 
 public class Dialog extends ElementsOfLevel {
 
-    String text;
-    String buttonText;
-    int picture;
-    ArrayList<String> texts;
+    public String text;
+    public String buttonText;
+    public String picture;
 
-    public Dialog(String text, @Nullable String buttonText, int picture) {
+    public Dialog(String text, @Nullable String buttonText, String picture) {
         this.text = text;
         this.picture = picture;
         this.buttonText = buttonText;
     }
 
-    public Dialog(ArrayList<String> texts, int picture) {
-        this.texts = texts;
-        this.picture = picture;
-    }
 
-    public String getTextById(int id) {
-        return texts.get(id);
-    }
 
     public String getText() {
         return text;
@@ -38,7 +30,7 @@ public class Dialog extends ElementsOfLevel {
         return buttonText;
     }
 
-    public int getPicture() {
+    public String getPicture() {
         return picture;
     }
 }
